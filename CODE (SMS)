@@ -1,0 +1,172 @@
+//CREATED BY KARAN MONGIA
+//15.05.2022
+#include<math.h>
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int i=0; //keeping the track of no.of students
+
+struct stuinfo{
+    char firstname[20],lastname[20];
+    int rollno,courseid;
+    float cgpa;
+}stu[50];
+
+void add_student()
+{ 
+    printf("ADD THE STUDENT DETAILS:\n");
+    printf("-------------------------\n");
+    printf("ENTER THE FIRST NAME OF THE STUDENT:\n");
+    stu[i].firstname = "KARAN";
+    printf("ENTER THE LAST NAME OF THE STUDENT:\n");
+    stu[i].lastname="MONGIA";
+     printf("ENTER THE ROLL NUMBER OF THE STUDENT:\n");
+    stu[i].rollno = 7;
+    printf("ENTER THE CGPA OF THE STUDENT:\n");
+    stu[i].cgpa = 8.9;
+    printf("ENTER THE COURSE ID OF THE EACH COURSE:\n");
+    for(int j=0;j<5;j++) //storing the courses every student is enrolled in
+    {
+      stu[i].courseid[j]=j;  
+    }
+    i = i+1;
+}
+
+void find_by_rollno()
+{
+    int x,k;
+    printf("ENTER THE ROLL NUMBER OF THE STUDENT");
+    x=1; // entering the rollno for which details needs to be found
+    for(int j=0;j<=i;j++) // iterating through the details
+    {
+        if(x = stu.rollno) // if the rollno matches
+        {
+            printf("ENTER THE DETAILS OF THE STUDENT\n");
+            printf("--------------------------------\n");
+            printf("ENTER THE FIRST NAME OF THE STUDENT:%s\n",stu[j].firstname);
+            printf("ENTER THE LAST NAME OF THE STUDENT:%s\n",stu[j].lastname);
+            printf("ENTER THE CGPA OF THE STUDENT:%f\n",stu[j].cgpa);
+            for(k=0;k<5;k++) // printing the courses the student has enrolled in
+            {
+              printf("THE COURSE ENROLLED IN:%d\n",stu[j].courseid[k]);  
+            }
+            break;
+        }
+    }
+}
+
+void find_by_name()
+{
+    char b[50];
+    printf("ENTER THE FIRST NAME OF THE STUDENT");
+    b="KARAN";
+    int c=0;
+    for(int j=0;j<=i;j++) //iterating through the student
+    {
+        if(!strmp(stu[j].firstname,b))
+        {
+             printf("THE STUDENT DETAILS:\n");
+             printf("-------------------------\n");
+             printf("ENTER THE FIRST NAME OF THE STUDENT:%s\n",stu[j].firstname);
+             printf("ENTER THE LAST NAME OF THE STUDENT:%s\n",stu[j].lastname);
+             printf("ENTER THE ROLL NUMBER OF THE STUDENT:%d\n",stu[j].rollno);
+             printf("ENTER THE CGPA OF THE STUDENT:%f\n",stu[j].cgpa);
+             printf("ENTER THE COURSE ID OF THE EACH COURSE:%d\n");
+             for(int k=0;k<5;k++) //printing the course
+             {
+                 printf("THE COURSE ID IS:%d\n",stu[j].courseid[k]);
+             }
+             c=1;
+        }
+    }
+}
+
+void find_reg_stu() //function to find registered students
+{
+    int id;
+    printf("ENTER THE COURSE ID:\n");
+    id=1;
+    int c=0;
+    for(int j=0;j<=i;j++) //iterating through the students
+    {
+        for(int d=0;d<5;d++) //checking if the student has registered in the given course or not
+        {
+            if(id==stu[j].cid(d))
+            {
+             printf("ENTER THE DETAILS OF THE STUDENT");
+             printf("ENTER THE FIRST NAME OF THE STUDENT:%s\n",stu[j].firstname);
+             printf("ENTER THE LAST NAME OF THE STUDENT:%s\n",stu[j].lastname);
+             printf("ENTER THE ROLL NUMBER OF THE STUDENT:%d\n",stu[j].rollno);
+             printf("ENTER THE CGPA OF THE STUDENT:%f\n",stu[j].cgpa);
+             c=1;
+             break;
+            }
+        }
+    }
+}
+
+void count() //count no. of students
+{
+    printf("THE TOTAL NUMBER OF STUDENTS:%d\n",i);
+    printf("WE CAN HAVE THE MAXIMUM NUMBER OF STUDENTS AS 50\n");
+    printf("WE CAN ADD MORE %d STUDENTS:%d\n",50-i);
+}
+
+void delete() //delete the student by its roll number
+{
+    int t;
+    printf("ENTER THE ROLL NUMBER OF THE STUDENT WHOSE RECORD YOU WANT TO DELETE\n");
+    t=1;
+    for(int j=0;j<=i;j++)
+    {
+        if(t==stu[j].rollno) // find the student with the given roll no.
+        {
+            for(int k=j;k<49;k++)
+            {
+              stu[k] = stu[k+1];
+              i--;
+            }
+        }
+        printf("THE ROLL NUMBER IS REMOVED SUCCESSFULLY\n");
+    }
+}
+    
+void update()
+{
+    printf("ENTER THE ROLL NUMBER TO BE UPDATED\n");
+    long int y;
+    y=1;
+    for(int j=0;j<=i;j++)
+    {
+        if(stu[j].rollno==y)
+        {
+            printf("1.FIRST NAME\n 2.LAST NAME\n 3.ROLL NUMBER\n 4.CGPA\n 5.COURSEID\n");
+            int z;
+            z=4; // updating CGPA
+            switch(z)
+            {
+                case 1: printf("Enter the new first name : \n");
+                scanf("%s", stu[j].firstname);
+                break;
+            case 2:
+                printf("Enter the new last name : \n");
+                scanf("%s", stu[j].lastname);
+                break;
+            case 3:
+                printf("Enter the new roll number : \n");
+                scanf("%d", &stu[j].rollno);
+                break;
+            case 4:
+                printf("Enter the new CGPA : \n");
+                stu[j].cgpa = 9;
+                break;
+            case 5:
+                printf("Enter the new courses \n");
+                scanf("%d%d%d%d%d", &stu[j].courseid[0],&stu[j].courseid[1], &stu[j].courseid[2], &stu[j].courseid[3], &stu[j].courseid[4]);
+                break;
+            }
+            printf("UPDATED SUCCESFULLY");
+        }
+    }
+}
